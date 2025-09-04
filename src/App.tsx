@@ -1,4 +1,4 @@
-import CanadaMap from "./components/Map/Map.tsx";
+import CanadaMap from "./components/CanadaMap/CanadaMap.tsx";
 
 function App() {
   return <CanadaMap />;

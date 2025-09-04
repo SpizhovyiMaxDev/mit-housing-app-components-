@@ -22,6 +22,17 @@ function CanadaMap() {
     layer.on("mouseover", () => {
       layer.setStyle(hoverStyles);
       layer.bringToFront();
+      console.log(feature.properties.name);
+
+      /*
+          "type": "Feature", 
+      "properties": {
+        "source": "https://simplemaps.com", 
+        "id": "CANL", 
+        "name": "Newfoundland and Labrador"
+      }, 
+      "id": 10
+      */
     });
     layer.on("mouseout", () => layer.setStyle(defaultStyles));
   }

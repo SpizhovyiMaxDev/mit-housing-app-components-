@@ -1,11 +1,9 @@
+import "./CanadaMap.styles.css";
 import { MapContainer, TileLayer, GeoJSON } from "react-leaflet";
 import canadaGeoJson from "../../data/ca.json";
 import "leaflet/dist/leaflet.css";
-import { useRef } from "react";
 
 function CanadaMap() {
-  const layersRef: any[] = useRef([]);
-
   const defaultStyles = {
     fillColor: "#74c476",
     weight: 1,
@@ -23,7 +21,6 @@ function CanadaMap() {
   function handleEachFeature(feature: any, layer: any) {
     layer.setStyle(defaultStyles);
 
-    // Add permanent popup/tooltip
     layer.bindTooltip(feature.properties.name, {
       permanent: true,
       direction: "center",
@@ -34,6 +31,7 @@ function CanadaMap() {
       layer.setStyle(hoverStyles);
       layer.bringToFront();
     });
+
     layer.on("mouseout", () => layer.setStyle(defaultStyles));
   }
 
@@ -41,7 +39,7 @@ function CanadaMap() {
     <MapContainer
       center={[56.1304, -106.3468]}
       zoom={4}
-      style={{ height: "100vh" }}
+      className="map-container"
     >
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

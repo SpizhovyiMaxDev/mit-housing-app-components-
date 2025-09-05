@@ -1,8 +1,11 @@
 import { MapContainer, TileLayer, GeoJSON } from "react-leaflet";
 import canadaGeoJson from "../../data/ca.json";
 import "leaflet/dist/leaflet.css";
+import { useRef } from "react";
 
 function CanadaMap() {
+  const layersRef: any[] = useRef([]);
+
   const defaultStyles = {
     fillColor: "#74c476",
     weight: 1,
@@ -19,20 +22,17 @@ function CanadaMap() {
 
   function handleEachFeature(feature: any, layer: any) {
     layer.setStyle(defaultStyles);
+
+    // Add permanent popup/tooltip
+    layer.bindTooltip(feature.properties.name, {
+      permanent: true,
+      direction: "center",
+      className: "province-label",
+    });
+
     layer.on("mouseover", () => {
       layer.setStyle(hoverStyles);
       layer.bringToFront();
-      console.log(feature.properties.name);
-
-      /*
-          "type": "Feature", 
-      "properties": {
-        "source": "https://simplemaps.com", 
-        "id": "CANL", 
-        "name": "Newfoundland and Labrador"
-      }, 
-      "id": 10
-      */
     });
     layer.on("mouseout", () => layer.setStyle(defaultStyles));
   }

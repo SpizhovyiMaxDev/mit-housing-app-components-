@@ -1,7 +1,7 @@
-import CanadaMap from "./components/CanadaMap/CanadaMap.tsx";
+import Chart from "./components/Charts/Chart.tsx";
 
 function App() {
-  return <CanadaMap />;
+  return <Chart />;
 }
 
 export default App;
